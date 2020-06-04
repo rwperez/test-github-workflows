@@ -18,6 +18,9 @@ jobs:
 
       - name: get staging sha
         id: staging
+        env:
+          SHA: ${{ github.ref }}
+        run: echo "::set-env name=STAGING_SHA::$SHA"
         outputs:
           SHA: ${{ github.ref }}
 
@@ -29,7 +32,7 @@ jobs:
           SHA: ${{ github.sha }}
           STAGING_HEAD: ${{ steps.staging.outputs.SHA }}
         run: |
-          echo "sha: $SHA staging_head: $STAGING_HEAD"
+          echo "sha: $SHA staging_head: $STAGING_HEAD staging_sha: $STAGING_SHA"
           if [ $SHA == $STAGING_HEAD ]; then exit 0 ; else exit 1 ; fi
 
       # - name: Check git tag
