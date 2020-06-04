@@ -29,7 +29,7 @@ jobs:
           echo "::set-output name=RUN_JOBS::true"
   build:
     runs-on: ubuntu-latest
-    if: ${{ core.getInput('RUN_JOBS') == 'true' }}
+    if: ${{ outputs.RUN_JOBS) == 'true' }}
     # needs: [build-check]
     steps:
       - name: run the build
