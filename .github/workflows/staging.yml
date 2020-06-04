@@ -18,12 +18,12 @@ jobs:
         run: echo "::set-env name=HEAD_TAG::$(git tag --points-at HEAD)"
 
       - name: Runs only if Git tag exists
-        if: env.HEAD_TAG == ''
+        if: ${{ env.HEAD_TAG == '' }}
         run: |
           echo "$HEAD_TAG fail step because head of branch is not a tag"
   build:
     runs-on: ubuntu-latest
-    if: env.HEAD_TAG != ''
+    if: ${{ env.HEAD_TAG == '' }}
     # needs: [build-check]
     steps:
       - name: run the build
