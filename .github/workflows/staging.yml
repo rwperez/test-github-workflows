@@ -1,0 +1,30 @@
+name: Stg Build Deploy Payer API
+
+on:
+  push:
+    branches:
+      - 'staging'
+    tags:
+      - '*'
+
+jobs:
+  build-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v2.0.0
+
+      - name: Check if Git tag exists
+        run: echo "::set-env name=HEAD_TAG::$(git tag --points-at HEAD)"
+
+      - name: Runs only if Git tag exists
+        if: env.HEAD_TAG == ''
+        run: |
+          echo "fail step because head of branch is not a tag"
+  build:
+    runs-on: ubuntu-latest
+    if: env.HEAD_TAG != ''
+    depends-on: [build-check]
+    steps:
+      - name: run the build
+        run: echo "build ran because tag found"
