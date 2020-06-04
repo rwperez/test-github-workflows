@@ -18,9 +18,7 @@ jobs:
 
       - name: get staging sha
         id: staging
-        run: |
-          echo "STAGING HEAD: $(git rev-parse HEAD)"
-          echo "::set-env name=STAGING_SHA::$(git rev-parse HEAD)"
+        run: echo "::set-env name=STAGING_SHA::$(git rev-parse HEAD)"
 
       - name: checkout tag
         uses: actions/checkout@v2.0.0
