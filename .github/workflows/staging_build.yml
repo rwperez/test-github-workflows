@@ -15,9 +15,15 @@ jobs:
           fetch-depth: '0'
       - name: Bump version and push tag
         # uses: mathieudutour/github-tag-action@v4.5
-        uses: anothrNick/github-tag-action@1.17.2
+        # uses: anothrNick/github-tag-action@1.17.2
+        uses: mathieudutour/github-tag-action@v4.5
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          RELEASE_BRANCHES: 'staging'
-          DRY_RUN: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: 'patch'
+          release_branches: 'staging'
+
+        # with:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # WITH_V: true
+          # RELEASE_BRANCHES: 'staging'
+          # DRY_RUN: true
