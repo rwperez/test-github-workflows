@@ -20,11 +20,11 @@ jobs:
       - name: Runs only if Git tag exists
         if: env.HEAD_TAG == ''
         run: |
-          echo "fail step because head of branch is not a tag"
+          echo "$HEAD_TAG fail step because head of branch is not a tag"
   build:
     runs-on: ubuntu-latest
     if: env.HEAD_TAG != ''
-    depends-on: [build-check]
+    # needs: [build-check]
     steps:
       - name: run the build
         run: echo "build ran because tag found"
