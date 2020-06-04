@@ -19,7 +19,7 @@ jobs:
       - name: get staging sha
         id: staging
         env:
-          SHA: ${{ github.ref }}
+          SHA: ${{ github.sha }}
         run: echo "::set-env name=STAGING_SHA::$SHA"
 
       - name: checkou tag
