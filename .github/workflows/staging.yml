@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
+      - uses: actions/checkout@v2.0.0
 
-      - name: Get staging commit sha
+      - name: staging
+        id: staging
         uses: actions/checkout@v2.0.0
         with:
           ref: 'staging'
-        env:
+        outputs:
           STAGING_HEAD: ${{ github.ref }}
-        run: echo "::set-env name=STAGING_HEAD::$STAGING_HEAD"
-
 
       - name: Validate staging is at tag
         uses: actions/checkout@v2.0.0
@@ -26,6 +26,7 @@ jobs:
             depth: 1
         env:
           SHA: ${{ github.sha }}
+          STAGING_HEAD: ${{ steps.staging.outputs.STAGING_HEAD }}
         run: |
           echo "sha: $SHA staging_head: $STAGING_HEAD"
           if [ $SHA == $STAGING_HEAD ]; then exit 0 ; else exit 1 ; fi
