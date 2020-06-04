@@ -13,7 +13,9 @@ jobs:
       - uses: actions/checkout@v2.0.0
 
       - name: Get staging commit sha
-        run: if [ $(git log -1 v0.1.0 --pretty=%H) == $(git rev-parse origin/staging) ]; then exit 0 ; else exit 1 ; fi
+        env:
+          TAG: ${{ github.ref }}
+        run: if [ $(git log -1 $TAG --pretty=%H) == $(git rev-parse staging) ]; then exit 0 ; else exit 1 ; fi
 
       # - name: Check git tag
       #   run: echo "::set-env name=HEAD_TAG::$(git tag --points-at HEAD)"
