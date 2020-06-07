@@ -1,0 +1,84 @@
+{
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::{{ AWS_ACCT }}:role/ecs-task-execution-role-{{ STATE }}-{{ APP_NAME }}-{{ APP_ENV }}",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": null,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": null,
+        "options": {
+          "awslogs-group": "/ecs/{{ APP_ENV }}/",
+          "awslogs-region": "{{ REGION }}",
+          "awslogs-stream-prefix": ""
+        }
+      },
+      "entryPoint": [],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "command": null,
+      "linuxParameters": null,
+      "cpu": 1024,
+      "environment": [
+        {
+          "name": "PORT",
+          "value": "80"
+        },
+        {
+          "name": "HOST",
+          "value": "https://test-host.local"
+        }
+      ],
+      "resourceRequirements": null,
+      "ulimits": null,
+      "dnsServers": null,
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "/{{ APP_ENV }}/common/TEST_SECRET",
+          "name": "TEST_SECRET"
+        }
+      ],
+      "dockerSecurityOptions": null,
+      "memory": 768,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "{{ IMAGE_URI }}",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": null,
+      "hostname": null,
+      "extraHosts": null,
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": null,
+      "systemControls": null,
+      "privileged": null,
+      "name": "YOUR_NAME"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": null,
+  "taskRoleArn": "arn:aws:iam::{{ AWS_ACCT }}:role/",
+  "family": "",
+  "pidMode": null,
+  "requiresCompatibilities": [],
+  "networkMode": "awsvpc",
+  "cpu": null,
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
+}

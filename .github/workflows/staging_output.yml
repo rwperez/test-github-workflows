@@ -1,0 +1,39 @@
+name: Test outputs
+
+on:
+  push:
+    branches:
+      - 'staging'
+
+jobs:
+  create-outputs:
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+      task_def_1: ${{ steps.task_def_1.outputs.task_def }}
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v2.0.0
+
+      - id: step1
+        run: echo "::set-output name=test::hello"
+      - id: step2
+        run: echo "::set-output name=test::world"
+
+      - name: create an output
+        id: task_def_1
+        run: echo "::set-output name=task_def::$(<test_task_definition.json)"
+
+  read-outputs:
+    runs-on: ubuntu-latest
+    needs: [create-outputs]
+    timeout-minutes: 2
+    steps:
+      - name: read out 1 and 2
+      - run: echo ${{needs.create-outputs.outputs.output1}} ${{needs.create-outputs.outputs.output2}}
+
+      - name: read task def
+        run: |
+          echo "show the output"
+          echo ${{ needs.create-outputs.outputs.task_def_1 }}
