@@ -2,8 +2,11 @@ name: Stg Build Deploy Payer API
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - 'foo'
+
+    # tags:
+    #   - '*'
 
 jobs:
   build-check:

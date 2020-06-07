@@ -15,12 +15,13 @@ jobs:
       task_def_1: ${{ steps.task_def_1.outputs.task_def }}
     steps:
       - id: step1
+        name: step 1
         run: echo "::set-output name=test::hello"
       - id: step2
+        name: step2
         run: echo "::set-output name=test::world"
-
-      - name: create an output
-        id: task_def_1
+      - id: task_def_1
+        name: task_def_1
         run: echo "::set-output name=task_def::$(<test_task_definition.json)"
 
   read-outputs:
