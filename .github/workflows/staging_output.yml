@@ -12,7 +12,7 @@ jobs:
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
-      # task_def_1: ${{ steps.task_def_1.outputs.task_def }}
+      task_def_1: ${{ steps.task_def_1.outputs.task_def }}
     steps:
       - uses: actions/checkout@v2.0.0
       - id: step1
@@ -21,9 +21,9 @@ jobs:
       - id: step2
         name: step2
         run: echo "::set-output name=test::world"
-      # - id: task_def_1
-      #   name: task_def_1
-      #   run: echo "::set-output name=task_def::$(<test_task_definition.json)"
+      - id: task_def_1
+        name: task_def_1
+        run: echo "::set-output name=task_def::$(<test_task_definition.json)"
 
   # read-outputs:
   #   runs-on: ubuntu-latest
