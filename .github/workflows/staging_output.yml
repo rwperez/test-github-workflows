@@ -30,10 +30,7 @@ jobs:
     needs: create-outputs
     steps:
       - id: step1
-      - run: |
-        echo ${{needs.create-outputs.outputs.output1}} ${{needs.create-outputs.outputs.output2}}
-        echo "show the output"
-        echo ${{ needs.create-outputs.outputs.task_def_1 }}
+      - run: echo ${{needs.create-outputs.outputs.output1}} ${{needs.create-outputs.outputs.output2}}
   # read-outputs:
   #   runs-on: ubuntu-latest
   #   needs: [create-outputs]
