@@ -23,7 +23,7 @@ jobs:
         run: echo "::set-output name=test::world"
       - id: task_def_1
         name: task_def_1
-        run: echo ::set-output name=task_def::'$(<test_task_definition.json)'
+        run: echo ::set-output name=task_def::\'$(<test_task_definition.json)\'
 
   read-outputs:
     runs-on: ubuntu-latest
