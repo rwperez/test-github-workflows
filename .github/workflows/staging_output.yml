@@ -20,9 +20,9 @@ jobs:
       - id: step2
         name: step2
         run: echo "::set-output name=test::world"
-      - id: task_def_1
-        name: task_def_1
-        run: echo "::set-output name=task_def::$(<test_task_definition.json)"
+      # - id: task_def_1
+      #   name: task_def_1
+      #   run: echo "::set-output name=task_def::$(<test_task_definition.json)"
 
   read-outputs:
     runs-on: ubuntu-latest
@@ -32,7 +32,7 @@ jobs:
       - name: read out 1 and 2
       - run: echo ${{needs.create-outputs.outputs.output1}} ${{needs.create-outputs.outputs.output2}}
 
-      - name: read task def
-        run: |
-          echo "show the output"
-          echo ${{ needs.create-outputs.outputs.task_def_1 }}
+      # - name: read task def
+      #   run: |
+      #     echo "show the output"
+      #     echo ${{ needs.create-outputs.outputs.task_def_1 }}
