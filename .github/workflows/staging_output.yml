@@ -8,14 +8,12 @@ on:
 jobs:
   create-outputs:
     runs-on: ubuntu-latest
+    timeout-minutes: 2
     outputs:
       output1: ${{ steps.step1.outputs.test }}
       output2: ${{ steps.step2.outputs.test }}
       task_def_1: ${{ steps.task_def_1.outputs.task_def }}
-    timeout-minutes: 2
     steps:
-      - uses: actions/checkout@v2.0.0
-
       - id: step1
         run: echo "::set-output name=test::hello"
       - id: step2
