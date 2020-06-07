@@ -9,9 +9,9 @@ jobs:
   create-outputs:
     runs-on: ubuntu-latest
     timeout-minutes: 2
-    # outputs:
-      # output1: ${{ steps.step1.outputs.test }}
-      # output2: ${{ steps.step2.outputs.test }}
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
       # task_def_1: ${{ steps.task_def_1.outputs.task_def }}
     steps:
       - uses: actions/checkout@v2.0.0

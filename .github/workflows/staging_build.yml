@@ -3,7 +3,7 @@ name: Tag Staging
 on:
   push:
     branches:
-      - 'staging'
+      - 'foo'
 
 jobs:
   build-check:
